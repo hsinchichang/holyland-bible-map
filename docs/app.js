@@ -767,6 +767,13 @@
   onRoute();
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    const hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('sw.js').then(() => setTimeout(updateOfflineStatus, 3000)).catch(() => { /* offline mode unavailable */ });
+    // a new version finished installing: reload once so the fresh content shows right away
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController) return;
+      if (document.activeElement?.tagName === 'TEXTAREA') toast('有新版內容，下次打開時會更新');
+      else location.reload();
+    });
   }
 })();

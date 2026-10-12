@@ -12,7 +12,7 @@
 
 1. 編輯 `content/places.json`
 2. 執行 `python3 tools/build.py`
-3. 把 `docs/sw.js` 裡的 `VERSION` 加一號（例如 `v1` → `v2`），讓已安裝的手機抓到新版
+3. 把 `docs/sw.js` 裡的 `VERSION` 加一號（例如 `v4` → `v5`），已安裝的手機下次打開就會自動更新
 4. commit 並 push
 
 ## 本機預覽

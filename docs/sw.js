@@ -1,5 +1,5 @@
 // Offline support: app files + photos are cached on install; map tiles and fonts are cached as they load.
-const VERSION = 'v3';
+const VERSION = 'v4';
 const APP_CACHE = 'app-' + VERSION;
 const TILE_CACHE = 'tiles';
 const FONT_CACHE = 'fonts';
@@ -15,7 +15,7 @@ const CORE = [
 const PHOTOS = self.APP_DATA.places.flatMap((p) => p.photos.map((ph) => ph.src));
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(APP_CACHE).then((c) => c.addAll([...CORE, ...PHOTOS])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(APP_CACHE).then((c) => c.addAll([...CORE, ...PHOTOS].map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
