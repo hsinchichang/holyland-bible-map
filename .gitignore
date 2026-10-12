@@ -1,0 +1,3 @@
+# Large Natural Earth source files; re-downloaded by hand if the base map needs rebuilding
+build_cache/*.geojson
+.DS_Store

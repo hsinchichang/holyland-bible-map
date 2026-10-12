@@ -1,0 +1,15 @@
+{
+  "name": "聖地經文地圖",
+  "short_name": "聖地經文",
+  "description": "以色列聖經地點地圖：照著行程，對照每個地方的經文、故事和照片。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3F4EF",
+  "theme_color": "#4F6B2A",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

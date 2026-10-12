@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>聖地經文地圖</title>
+<meta name="description" content="以色列聖經地點地圖：照著行程，對照每個地方的經文、故事和照片。">
+<meta name="theme-color" content="#F3F4EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121614" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="聖地經文">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@400;600&display=swap">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.9 0-7 3-7 6.8 0 5 7 12.2 7 12.2s7-7.2 7-12.2c0-3.8-3.1-6.8-7-6.8z"/><path class="brand-book" d="M8.6 8.2c1.3-.4 2.5-.3 3.4.4.9-.7 2.1-.8 3.4-.4v4.6c-1.3-.4-2.5-.3-3.4.4-.9-.7-2.1-.8-3.4-.4z"/></svg>
+      <span class="brand-name">聖地經文地圖</span>
+    </div>
+    <div id="tripStatus" class="trip-status"></div>
+  </header>
+
+  <main>
+    <section id="view-map" class="view view-map" aria-label="地圖">
+      <div id="map"></div>
+      <div class="map-top">
+        <div id="dayChips" class="chips" role="tablist" aria-label="依行程篩選"></div>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="dot t-OT"></i>舊約</span>
+        <span><i class="dot t-NT"></i>新約</span>
+        <span><i class="dot t-both"></i>新舊約</span>
+      </div>
+      <div class="fabs">
+        <button id="btnLayer" class="fab" type="button" aria-label="切換地圖樣式">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 8 12 13l9.5-5z"/><path d="m2.5 12.5 9.5 5 9.5-5"/><path d="m2.5 16.5 9.5 5 9.5-5" opacity=".5"/></svg>
+          <span id="layerLabel">簡圖</span>
+        </button>
+        <button id="btnNear" class="fab fab-primary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7" fill="none"/></svg>
+          <span>我附近</span>
+        </button>
+      </div>
+      <div id="mapCard" class="map-card" hidden></div>
+    </section>
+
+    <section id="view-days" class="view view-scroll" aria-label="行程" hidden></section>
+    <section id="view-timeline" class="view view-scroll" aria-label="時間軸" hidden></section>
+    <section id="view-me" class="view view-scroll" aria-label="我的" hidden></section>
+  </main>
+
+  <nav class="tabbar" aria-label="主要分頁">
+    <a href="#map" data-view="map">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
+      <span>地圖</span>
+    </a>
+    <a href="#days" data-view="days">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M7.5 14h3M7.5 17h6"/></svg>
+      <span>行程</span>
+    </a>
+    <a href="#timeline" data-view="timeline">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v18"/><circle cx="6" cy="7" r="2"/><circle cx="6" cy="17" r="2"/><path d="M10.5 7h9M10.5 17h6"/></svg>
+      <span>時間軸</span>
+    </a>
+    <a href="#me" data-view="me">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-6-4-6 4z"/><path d="m9 9.5 2 2 4-4"/></svg>
+      <span>我的</span>
+    </a>
+  </nav>
+
+  <article id="detail" class="detail" hidden aria-live="polite"></article>
+  <dialog id="sheet" class="sheet"></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data/data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
