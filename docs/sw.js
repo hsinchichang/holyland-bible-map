@@ -1,5 +1,5 @@
 // Offline support: app files + photos are cached on install; map tiles and fonts are cached as they load.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const APP_CACHE = 'app-' + VERSION;
 const TILE_CACHE = 'tiles';
 const FONT_CACHE = 'fonts';
